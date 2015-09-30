@@ -1,7 +1,8 @@
 <html>
 	<head>
 		<title>More on Directives</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
 		<script src="myApp.js"></script>
 	</head>
 	<body>
@@ -13,10 +14,16 @@
 					</city>
 				</state>
 			</country>
-			<child></child>
-			<child></child>
-			<child></child>
-			<child></child>
+			
+			<div ng-controller="choreCtrl">
+				<child done="logChore(chore)"></child>
+			</div>
+			
+			<div ng-controller="drinkCtrl">
+				<input type="text" ng-model="ctrlFlavor">
+				<div drink flavor="strawberry"></div>
+			</div>
+
 		</div>
 	</body>
 </html>

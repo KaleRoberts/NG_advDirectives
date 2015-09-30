@@ -36,11 +36,39 @@
 		};
 	});
 
+	app.controller("choreCtrl", function($scope) {
+	$scope.logChore = function(chore) {
+		alert(chore + " is done!");
+		};
+	});
+
 	app.directive("child", function() {		// This will help understand isolated scope
 		return {
 			retrict: "E",
-			template: "<input type='text' ng-model='chore'>{{chore}}"
+			scope: {
+				done: "&"	// The ampersand tells us that the scope is going to contain an expression
+			},	// Before adding scope all child directives shared the same scope bindings, now we're isolating scope.
+			template: '<input type="text" ng-model="chore">' +
+			'{{chore}}' +
+			'<div class="button" ng-click="done({chore:chore})">I\'m done</div>'
+			}
+	});
+
+	app.controller('drinkCtrl', function($scope) {	// Making another example of isloating scope with @, which denotes a String identifier for the scope
+		$scope.ctrlFlavor = 'blackberry';
+	})
+
+	app.directive("drink", function() {
+		return {
+			scope: {
+				flavor: '@'
+			},
+			template: '<div>{{flavor}}</div>',
+			link: function(scope, element, attrs) {
+				scope.flavor = attrs.flavor;
+			}
 		};
 	});
+
 
 }());
