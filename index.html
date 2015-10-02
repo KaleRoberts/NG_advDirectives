@@ -20,8 +20,17 @@
 			</div>
 			
 			<div ng-controller="drinkCtrl">
+
+				<div>Controller</div>
 				<input type="text" ng-model="ctrlFlavor">
-				<div drink flavor="strawberry"></div>
+				<!-- <div drink flavor="strawberry"></div> -->
+				<div>Directive</div>
+				<div drinktwo flavor="ctrlFlavor"></div>
+			
+			</div>
+
+			<div ng-controller="phoneCtrl">
+				<div phone dial="callHome(message)"></div>
 			</div>
 
 		</div>

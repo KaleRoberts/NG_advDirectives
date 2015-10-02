@@ -55,20 +55,46 @@
 	});
 
 	app.controller('drinkCtrl', function($scope) {	// Making another example of isloating scope with @, which denotes a String identifier for the scope
-		$scope.ctrlFlavor = 'blackberry';
+		$scope.ctrlFlavor = 'blueberry';
 	})
 
-	app.directive("drink", function() {
+	// app.directive("drink", function() {
+	// 	return {
+	// 		scope: {
+	// 			flavor: '@'
+	// 		},
+	// 		template: '<div>{{flavor}}</div>',
+	// 		link: function(scope, element, attrs) {
+	// 			scope.flavor = attrs.flavor;
+	// 		}
+	// 	};
+	// });
+
+	app.directive('drinktwo', function() {	// Isolated scope with = operator which expects an object to which it can bind.
 		return {
 			scope: {
-				flavor: '@'
+				flavor: '='
 			},
-			template: '<div>{{flavor}}</div>',
-			link: function(scope, element, attrs) {
-				scope.flavor = attrs.flavor;
-			}
+			template: '<input type="text" ng-model="flavor">'
 		};
 	});
 
+	app.controller('phoneCtrl', function($scope) {
+		$scope.callHome = function(message) {
+			alert(message);
+		};
+	});
+
+	app.directive('phone', function () {
+		return {
+			// restrict: 'E',
+			scope: {
+				dial: '&' // The ampersand operator allows invocation or evaluation of an expression on the parent scope of whatever the directive is inside of.
+			},
+			template: '<input type="text" ng-model="value">' +
+					  '<div class="button" ng-click="dial({message:value})">' +
+					  'Call home!</div>',
+		};
+	});
 
 }());
